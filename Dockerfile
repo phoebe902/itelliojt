@@ -17,6 +17,7 @@ FROM php:8.2-apache
 WORKDIR /var/www/html
 
 # Install required system packages and PHP extensions
+
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     git \
@@ -26,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     libicu-dev \
+    libonig-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
         pdo_mysql \
@@ -38,6 +40,7 @@ RUN apt-get update && apt-get install -y \
         opcache \
     && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
+
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
