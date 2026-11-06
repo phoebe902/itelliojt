@@ -18,6 +18,7 @@ WORKDIR /var/www/html
 
 # Install required system packages and PHP extensions
 RUN apt-get update && apt-get install -y \
+    ca-certificates \
     git \
     unzip \
     libzip-dev \
